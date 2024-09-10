@@ -1,0 +1,538 @@
+html {
+  /* применение ко всему хтмл, чтобы поменять content-box на order-box*/
+  box-sizing: order-box; /*Считает ширину, например вычит ширины через padding*/
+}
+
+*,
+*::after,/*Это ознчает для всех тегов*/
+*::before {
+  box-sizing: inherit; /*inherit - означает как у родителя!*/
+  margin: 0; /*во всех браузерах изначально есть свои свойства стилей, которые надо обнулить*/
+  padding: 0;
+}
+
+html,
+body {
+  /*вместе с wrapper и main эти строчки позволяют сделать так, чтобы футер прилип к низу страницы*/
+  height: 100%;
+}
+
+ul {
+  list-style-type: none; /*убирает точки в списке в хедере*/
+}
+
+a {
+  text-decoration: none; /*убираем нижние подчеркивания в ссылках*/
+  color: inherit; /*меняем цвет ссылок на родительский*/
+}
+
+.section-title {
+  margin-bottom: 50px;
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto; /*Выравнивание блока хедера по центру экрана, 0 сверху и снизу, авто - лево право */
+  padding: 0 10px; /*для адаптива, по краям уберется по 10пх, поэтому прибавляем 20пх к общей длине*/
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.header {
+  background-color: #151515;
+}
+
+.header-main {
+  background-color: transparent;
+  position: absolute; /*Чтобы поднять header-main и top*/
+  z-index: 10;
+  left: 0;
+  right: 0; /*Чтобы равномерно растянуть header-main*/
+}
+
+.header__inner {
+  padding-top: 40px;
+  padding-bottom: 45px;
+  display: flex; /*распределяет модели по сетке, то есть меню и логотип будут стоять рядом друг с другом*/
+  justify-content: space-between; /*Распределяет контент по обеим сторонам равномерно*/
+  align-items: flex-end;
+}
+
+.menu__list {
+  display: flex; /*Слова в хедере будут идти друг за другом*/
+  gap: 35px; /*Создает пространство между словами в хедере размером 35пх*/
+}
+
+.menu__list-link {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.menu__list-link--active {
+  /*Если элемент меню в хедере выбран, то он светится синим*/
+  color: #0066ff;
+}
+
+.footer {
+  background-color: #151515;
+  padding: 50px 0 32px; /*отступы от слов футера сверху и снизу*/
+  color: #fff;
+}
+
+.footer__menu {
+  display: flex;
+  justify-content: space-around; /*неравномерное расстояние между блоками со словами*/
+  margin-bottom: 50px;
+}
+
+.footer__menu-list {
+  max-width: 250px;
+}
+
+.footer__menu-title {
+  font-size: 24px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+
+.footer__menu-item + .footer__menu-item {
+  /*Начинает примеять паддинг топ со второго элемента, 
+то есть у первого элемента не будет отступа 20пх сверху*/
+  padding-top: 20px;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 52px;
+}
+
+.footer__copy {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.copy__nav-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.main {
+  /*расширяет страницу и позволяет футеру прилипнуть к низу экрана*/
+  flex-grow: 1;
+}
+
+.top {
+  color: #fff;
+  text-align: center;
+  padding-top: 250px;
+  padding-bottom: 50px;
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0; /*Чтобы равномерно растянуть top*/
+}
+
+.title {
+  padding-bottom: 40px;
+  font-size: 96px;
+  font-weight: 700;
+}
+
+.top__link {
+  background-color: #151515;
+  padding: 23px;
+  max-width: 430px;
+  width: 100%; /*Чтобы применилось свойство max-width*/
+  display: inline-block; /*Из-за того, что ссылки изачально строчные
+  мы должны применить inline-block, чтобы padding, max-width и остальные свойства 
+  применялись*/
+  text-transform: uppercase;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.swiper::after {
+  content: "";
+  background: rgba(
+    21,
+    21,
+    21,
+    0.3
+  ); /*rgba - сразу с прозрачностью в конце, данном случае opacity = 0.3*/
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.swiper-slide {
+  background-repeat: no-repeat; /*Если картинка маленькая, а монитор большой, чтобы не повторялась картинка*/
+  background-size: cover; /*Чтобы растягивалась если нужно*/
+  background-position: center; /*Чтобы наша большая картикна полностью помещалась в экран, и не съедался низ или верх
+  Чтобы центрировать по низу, нужно написать bottom center*/
+  height: 100vh; /*100% высоты экрана*/
+}
+
+.swiper-pagination-bullet {
+  width: 120px;
+  height: 3px;
+  background-color: #151515;
+  border-radius: 0;
+  opacity: 1;
+  margin: 0 15px !important; /*!important Чтобы перебить более вышестоящие уже указанные свойства*/
+}
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 50px;
+}
+
+.swiper-pagination-bullet-active {
+  height: 6px;
+  background-color: #fff;
+}
+
+.why-lease {
+  padding: 150px 0;
+}
+
+.why-lease__list {
+  display: grid; /*не flex для более удобной работы, когда будем делать адаптив*/
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.why-lease__item-img {
+  margin-bottom: 30px;
+}
+
+.why-lease__item-title {
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.why-lease__item-text {
+  text-align: left;
+}
+
+.how-does {
+  padding-bottom: 150px;
+}
+
+.how-does__inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.how-does__title {
+  font-size: 24px;
+  font-size: 700;
+  padding-top: 50px;
+}
+
+.how-does__list {
+  padding: 50px 0 70px;
+  counter-reset: myCounter;
+}
+
+.how-does__item {
+  list-style-type: none; /*Убираем нумерацию, сделанную через ol в html, так как
+    у нас появилась своя нумерация, благодаря counter-increment*/
+  width: 270px;
+  position: relative;
+  margin-left: auto;
+  box-sizing: content-box;
+  padding: 19px 0 19px 240px;
+  min-height: 63px;
+}
+
+.how-does__item + .how-does__item {
+  /*Чтобы маржин не применялся к первому элементу*/
+  margin-top: 40px;
+}
+
+.how-does__item::before {
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  /*counter-reset: myCounter; counter-increment: myCounter; content: counter(myCounter)
+нужно для того, чтобы достучаться до счетсчиков, которые мы сделали через ol в html
+документе, для их стилизации.*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  font-weight: 700;
+  background-color: #0066ff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.video {
+  padding-bottom: 150px;
+}
+
+.video__title {
+  margin-bottom: 20px;
+}
+
+.video__text {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.video__content {
+  display: block; /*Если какой-то элемент не изменяется паржинами, паддингами, можно сделать его блочным*/
+  margin: 0 auto;
+}
+
+.important {
+  padding-bottom: 150px;
+}
+
+.important__title {
+  margin-bottom: 20px;
+}
+
+.important__text {
+  width: 580px;
+  margin: 0 auto 50px;
+}
+
+.important__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.important__item-img {
+  margin-bottom: 20px;
+}
+
+.contacts {
+  padding: 100px 0 150px; /*для всего блока*/
+}
+
+.contacts__title {
+  margin-bottom: 20px;
+}
+
+.contacts__text {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 100px;
+}
+
+form {
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form__input {
+  max-width: 270px;
+  padding: 18px 20px;
+  display: inline-block;
+  border: 1px solid #0066ff;
+  margin-bottom: 50px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #000;
+}
+
+.form__input::placeholder,
+.form__textarea::placeholder {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #000;
+  opacity: 0.5;
+}
+
+.form__textarea {
+  width: 100%;
+  resize: none;
+  padding: 28px 20px;
+  border: 1px solid #0066ff;
+  height: 291px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #000;
+  margin-bottom: 50px;
+}
+
+.form__btn {
+  margin: 0 auto;
+  padding: 13px 61px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #151515;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.blog {
+  padding-bottom: 150px;
+}
+
+.blog__items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-bottom: 70px;
+}
+
+.blog__item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.blog__item-img {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.blog__item-title {
+  flex-basis: 446px;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #151515;
+}
+
+.blog__item-link {
+  color: #fff;
+  background-color: #0066ff;
+  padding: 4px 20px;
+}
+
+.showmore-link {
+  text-transform: uppercase;
+  background-color: #151515;
+  padding: 13px;
+  color: #fff;
+  width: 225px;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+.choose {
+  padding: 100px 0 150px;
+}
+
+.tabs {
+  margin-bottom: 70px;
+}
+
+.tabs__btn {
+  padding: 0 150px;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  padding-bottom: 100px;
+}
+
+.tabs__btn-item {
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.tabs__btn-item--active {
+  color: #0066ff;
+}
+
+.tabs__content-item {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 100px 40px; /*Расстояние вниз от итема 100px, а вбок - 40px*/
+}
+
+.tabs__content-item.tabs__content-item--active {
+  display: grid;
+}
+
+.card {
+  text-align: center;
+  width: 270px;
+}
+
+.card__content {
+  padding: 0 5px;
+  border: 1px solid #0066ff;
+  border-top: 0;
+}
+
+.card__img {
+  display: block;
+  /*Из-за того что изначально картинка строчная, есть лишнеерасстояние
+    внизу медлу картинкой и тайтлом. Чтобы убрать лишнее расстрояние,
+    делаем картинку блочной*/
+}
+
+.card__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.card__text {
+  margin-bottom: 20px;
+}
+
+.card__price {
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.card__link {
+  display: block;
+  color: #0066ff;
+  border: 1px solid #0066ff;
+  border-top: 0;
+}
